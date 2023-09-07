@@ -32,25 +32,83 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 <h2>Installation Steps</h2>
 
 <p>
-<img src="https://i.imgur.com/ASio4Wv.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/ASio4Wv.png" height="40%" width="40%" alt="Disk Sanitization Steps"/>
+  <img src="https://i.imgur.com/kg6ePfB.png" height="40%" width="40%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+<p>To enable this feature Follow this path ->Control Panel > Programs > Programs and Features > Turn Windows features on or off (left side of the screen). Then under "Internet Information Services" expand this and then expand "Web Managment Tools" to reveal "IIS Managment Consol" and click the check box to enable.</p>
+Then go to "World Wide Web Services" then to "Application Development Features" and enable "CGI" and "Common HTTP Features" below and press "OK" it will then apply the changes and install required settings and you just have to wait untill it says "Windows completed the required changes" as shown below. Then to test if it works type "127.0.0.1" into a browser, if it doesnt work try and redo the first step.
+<img src="https://i.imgur.com/cFOq7vu.png" height="40%" width="40%" alt="Disk Sanitization Steps"/>
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+After installing PHP Manager & Rewrite Module, Create  the directory C:\PHP. Download the PHP 7.3.8 file and extract the contents into C:\PHP folder
 </p>
+<p> <img src="https://i.imgur.com/To8Lm5x.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> </p>
+<p> <img src="https://i.imgur.com/Bfvph7m.png" height="40%" width="40%" alt="Disk Sanitization Steps"/> </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Now we are going to intall "VC_redist.x86" & "MySQL 5.5.62" and configure MySQL. When setting up MySQL, on "Choose Setup Type" pick "Typical" -> Install -> Select the box "Launch the MySQL Instance Configuration Wizard" -> Finish. 
+  In the config Wizard select "Standard Configuration" -> Next -> Setup Password. -> Next -> Execute and wait for it to finish configuration and then click "Finish".
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/Aqwr7T0.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Now open "IIS" as Admin and click on "PHP Manager" then navigate to "register PHP". 
 </p>
+<p>Here you need to point to the php-chi.exe file found in C:\PHP </p>
+<img src="https://i.imgur.com/iiaN4WL.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p>Now we need to go back to the main menu in "IIS" and Restart the server</p>
+<img src="https://i.imgur.com/B4qAaeg.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <br />
+
+<p>
+Now we need to Download osTicket, Once downloaded extract the "upload" folder into c:\inetpub\wwwroot. Then rename upload folder to "osTicket". Then restart the IIS server once more.
+</p>
+<img src="https://i.imgur.com/js0lxsQ.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p>
+Now when u have reopend "IIS" on the left side on "Sites" drop down then the "Default Web Site" dropdown then click on "osTicket" then on the right side of "IIS" window click on "Browse *80".
+</p>
+<img src="https://i.imgur.com/6wsIk1v.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p>
+Now you should be able to see osTicket installer like shown below, Notice that some of the settings is disabled. To enable them go back to the "IIS" -> Sites -> Default -> osTicket and click on PHP Manager and click "enable or disagble an extention" at the bottom inside of PHP Manager.
+</p>
+<p><img src="https://i.imgur.com/EqadzEF.png" height="40%" width="40%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/CAY5ehA.png" height="40%" width="40%" alt="Disk Sanitization Steps"/></p>
+
+  Enable the following extention:
+  - php_imap.dll
+  - php_intl.dll
+  - php-opcache.dll
+  <p> Now refresh the page and see that they have been enabled. </p>
+<br />
+
+<p> Rename: ost-config.php </p>
+<p> From: C:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php </p>
+<p> To: C:\inetpub\wwwroot\osTicket\include\ost-config.php </p>
+<br />
+
+<p>
+Lets assign permissions in the ost-config.php file. Right click on the file Properties -> Security -> Advanced:
+</p>
+<p><img src="https://i.imgur.com/TI8CjHr.png" height="40%" width="40%" alt="Disk Sanitization Steps"/>
+<p> Now press the Disable inheritance to remove all the listed groups in the list, and add a new entry called "everyone" then click apply and done. </p>
+
+<br />
+
+<p>
+  Now back to finish setting up osTicket in the browser, Click "Continue" under the list of settings. Then fill in the information in the form to create your own help desk and the Admin user for the help desk. once you have filled in the information press "Install Now"
+<p> <img src="https://i.imgur.com/ALXVbK5.png" height="40%" width="40%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/S6M4F5e.png" height="40%" width="40%" alt="Disk Sanitization Steps"/></p>
+</p>
+<p>
+  Now that osTicket is up and running head to " http://localhost/osTicket/scp/login.php" and login with the admin account you just created. To create tickets to go "http://localhost/osTicket/" and click Submit ticket.
+</p>
+<img src="https://i.imgur.com/mKBjoDL.png" height="40%" width="40%" alt="Disk Sanitization Steps"/>
+<p>
+  Now to clean up a little. Delete the osTicket Setup file (C:\inetpub\wwwroot\osTicket\setup) And set permission "Read only" for C:\inetpub\wwwroot\osTicket\include\ost-config.php
+</p>
+
