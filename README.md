@@ -24,6 +24,7 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 - Install VC_redist.x86
 - Install MySQL
 - Download osTicket
+- Link to downloads: https://drive.google.com/drive/u/0/folders/1APMfNyfNzcxZC6EzdaNfdZsUwxWYChf6
 
 <h2>Installation Steps</h2>
 
